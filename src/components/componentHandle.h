@@ -6,22 +6,21 @@
 
 template <typename ComponentType> class ComponentHandle {
   Entity owner;
+  ComponentType *component;
   ComponentManager<ComponentType> *manager;
 
 public:
   // Empty constructor used for World::unpack()
   ComponentHandle(){};
-  ComponentHandle(Entity owner, std::weak_ptr<ComponentType> component,
+  ComponentHandle(Entity owner, ComponentType *component,
                   ComponentManager<ComponentType> *manager) {
     this->owner = owner;
     this->component = component;
     this->manager = manager;
   }
-  std::weak_ptr<ComponentType> component;
 
   // handle->member is the same as handle.component->member
-  // std::shared_ptr<ComponentType> operator->() const { return
-  // component.lock(); }
+  ComponentType *operator->() const { return component; }
 
   void destroy() { manager->destroyComponent(owner); }
 };

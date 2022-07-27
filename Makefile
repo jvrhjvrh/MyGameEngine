@@ -9,7 +9,7 @@ LDFLAGS := $(shell pkg-config --libs glfw3)
 CXX := g++
 SOURCEFILES := ./src
 OUT := ./out
-OBJECTS := $(OUT)/shader.o $(OUT)/loadTextures.o $(OUT)/glfw.o $(OUT)/window.o $(OUT)/models.o $(OUT)/keys.o $(OUT)/game.o $(OUT)/componentMask.o $(OUT)/entityManager.o
+OBJECTS := $(OUT)/shader.o $(OUT)/loadTextures.o $(OUT)/glfw.o $(OUT)/window.o $(OUT)/models.o $(OUT)/keys.o $(OUT)/game.o $(OUT)/componentMask.o $(OUT)/entityManager.o $(OUT)/component.o
 
 .PHONY: main
 
@@ -42,6 +42,9 @@ $(OUT)/componentMask.o: $(SOURCEFILES)/components/componentMask.h
 
 $(OUT)/entityManager.o: $(SOURCEFILES)/entities/entityManager.h
 	$(CXX) -c -o $@ $(SOURCEFILES)/entities/entityManager.cpp $(LDFLAGS)
+
+$(OUT)/component.o: $(SOURCEFILES)/components/component.h
+	$(CXX) -c -o $@ $(SOURCEFILES)/components/component.cpp $(LDFLAGS)
 
 clean:
 	rm ./out/*

@@ -9,20 +9,20 @@
 template <typename ComponentType> class EntityMap {
 public:
   ComponentType *getInstance(Entity entity) {
-    return &entityToInstance.at(entity);
+    return &entityToInstance.at(entity.id);
   }
 
   void add(Entity entity, ComponentType &instance) {
-    auto instanceMap = entityToInstance.find(entity);
+    auto instanceMap = entityToInstance.find(entity.id);
     if (instanceMap == entityToInstance.end()) {
-      entityToInstance.insert({entity, instance});
+      entityToInstance.insert({entity.id, instance});
     }
   }
 
-  void removeEntity(Entity entity) { entityToInstance.erase(entity); }
+  void removeEntity(Entity entity) { entityToInstance.erase(entity.id); }
 
 private:
-  std::unordered_map<Entity, ComponentType> entityToInstance;
+  std::unordered_map<uint32_t, ComponentType> entityToInstance;
 };
 
 #endif // ENTITYMAP_H_

@@ -13,6 +13,7 @@
 #include <iostream>
 #include <stdio.h>
 
+#include "components/component.h"
 #include "entities/entityHandle.hpp"
 // position
 glm::vec3 position = glm::vec3(0, 0, 5);
@@ -98,11 +99,10 @@ struct Position : Component<Position> {
 
 int main() {
   Game game = Game();
-  EntityHandle handle = game.createEntity();
-  handle.addComponent<Position>(Position(1, 2, 3));
-  auto test = handle.getComponent<Position>();
-  auto testando = test.component.lock();
-  printf("%d", testando->x);
+  EntityHandle gameObject = game.createEntity();
+  gameObject.addComponent<Position>(Position(1, 2, 3));
+  auto test = gameObject.getComponent<Position>();
+  printf("%d %d %d", test->x, test->y, test->z);
   // if (initializeWindowLibrary() == -1) {
   //   return -1;
   // }
