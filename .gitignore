@@ -5,3 +5,6 @@ tmp/
 .ccls-cache
 .ccls-cache/
 .ccls-cache/*
+out
+out/
+out/*
