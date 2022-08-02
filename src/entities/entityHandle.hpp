@@ -15,6 +15,8 @@ public:
 
   template <typename ComponentType>
   void addComponent(ComponentType &&component) {
+    component.game = game;
+    component.entity = &entity;
     game->addComponent<ComponentType>(entity,
                                       std::forward<ComponentType>(component));
   }

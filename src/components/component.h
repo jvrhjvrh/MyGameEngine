@@ -3,6 +3,9 @@
 
 #include <type_traits>
 
+class Game;
+class Entity;
+
 struct ComponentCounter {
   static int familyCounter;
 };
@@ -12,6 +15,8 @@ template <typename ComponentType> struct Component {
     static int family = ComponentCounter::familyCounter++;
     return family;
   }
+  Game *game;
+  Entity *entity;
 };
 
 // Util method for getting family given type

@@ -4,12 +4,16 @@
 # @file
 # @version 0.1
 
+DIRS=out
 CFLAGS := $(shell pkg-config --keep-system-cflags --cflags glfw3) -lGLEW -lGL
 LDFLAGS := $(shell pkg-config --libs glfw3)
 CXX := g++
 SOURCEFILES := ./src
 OUT := ./out
 OBJECTS := $(OUT)/shader.o $(OUT)/loadTextures.o $(OUT)/glfw.o $(OUT)/window.o $(OUT)/models.o $(OUT)/keys.o $(OUT)/game.o $(OUT)/componentMask.o $(OUT)/entityManager.o $(OUT)/component.o
+
+#Create directory out if not exists
+$(shell mkdir -p $(DIRS))
 
 .PHONY: main
 

@@ -3,18 +3,16 @@
 
 #include "../entities/entity.h"
 #include "entityMap.h"
-#include <array>
-#include <map>
 #include <memory>
 
 class BaseComponentManager {
 public:
-  // BaseComponentManager() = default;
-  // virtual ~BaseComponentManager() = default;
-  // BaseComponentManager(const BaseComponentManager &) = default;
-  // BaseComponentManager &operator=(const BaseComponentManager &) = default;
-  // BaseComponentManager(BaseComponentManager &&) = default;
-  // BaseComponentManager &operator=(BaseComponentManager &&) = default;
+  BaseComponentManager() = default;
+  virtual ~BaseComponentManager() = default;
+  BaseComponentManager(const BaseComponentManager &) = default;
+  BaseComponentManager &operator=(const BaseComponentManager &) = default;
+  BaseComponentManager(BaseComponentManager &&) = default;
+  BaseComponentManager &operator=(BaseComponentManager &&) = default;
 };
 
 template <typename ComponentType>

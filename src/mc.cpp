@@ -93,16 +93,18 @@ void controlLoop(Window window) {
 }
 
 struct Position : Component<Position> {
-  int x, y, z;
-  Position(int x, int y, int z) : x(x), y(y), z(z){};
+  glm::vec3 pos;
+  Position(glm::vec3 pos) : pos(pos){};
+  float getX() { return pos.x; }
 };
 
 int main() {
   Game game = Game();
+  Position position = Position(glm::vec3(1, 2, 3));
   EntityHandle gameObject = game.createEntity();
-  gameObject.addComponent<Position>(Position(1, 2, 3));
+  gameObject.addComponent<Position>(std::forward<Position>(position));
   auto test = gameObject.getComponent<Position>();
-  printf("%d %d %d", test->x, test->y, test->z);
+  printf("%f %f %f", test->getX(), test->pos.y, test->pos.z);
   // if (initializeWindowLibrary() == -1) {
   //   return -1;
   // }
